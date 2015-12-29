@@ -24,10 +24,11 @@
 ![查询交易信息](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=566h55CG5ZGYLT4r5LqR5ZWG5Z-OOiDmn6XnnIvkuqTmmJMKAA8JLT4rSGlQT1PkupEAHgXor6Lpl6jlupflj4oAEgWk5piT57uf6K6hCgAhCC0tPi0ATgs8PAAaDD4-Cm9wdCB0ZXh0CiAgICAAThwAgQcG6K-m5oOFACgFAEMfACQGPj4KZW5kAIE4Cy0-LQCBawk6IDw85a6M5oiQPj4K&s=earth)
 
 ## O2O HiPOS云端接口
-### 接口调用鉴权
-在使用具体的业务接口前需要获得接口的使用权限，HiPOS云依据商户已经登记的域名（主机名）回调相应的接口，以此鉴定调用者的合法身份。
 
 ![业务授权](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=566h55CG5ZGYLT4rSGlTaG9w5bqU55SoOiAqUE9T5Lia5YqhKgoADgwAJAVQT1PkupE6IOiOt-WPllRva2VuICjln7rkuo7ln5_lkI0pCgAdCC0tPi0ATA48POi_lOWbnj4-Cmxvb3Ag562J5b6FAEAF5Zue6LCDCiAgICAAZg4AgQ4OACASZW5kAGgKAIE7EFtjYWxsYmFja13mjojmnYMAgSsF6YCa55-lAIFNDgCBJgUAgVQIAIEcCwBwHOaJp-ihjOWFt-S9kwCCKgkARhEAgl8JOiA8POWujOaIkD4-Cg&s=earth)
+
+### 接口调用鉴权
+您的应用发向HiPOS云API的每一个请求都必须包含授权令牌（Token），HiPOS将使用这个Token来识别应用的合法身份。出于安全原因，所有发放给应用的Token都有一定的有效期，请在Token即将过期前重新获取新的Token，以便后续业务的正常调用。
 
 > POST /token
 
