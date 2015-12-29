@@ -23,11 +23,51 @@
 
 ![查询交易信息](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=566h55CG5ZGYLT4r5LqR5ZWG5Z-OOiDmn6XnnIvkuqTmmJMKAA8JLT4rSGlQT1PkupEAHgXor6Lpl6jlupflj4oAEgWk5piT57uf6K6hCgAhCC0tPi0ATgs8PAAaDD4-Cm9wdCB0ZXh0CiAgICAAThwAgQcG6K-m5oOFACgFAEMfACQGPj4KZW5kAIE4Cy0-LQCBawk6IDw85a6M5oiQPj4K&s=earth)
 
-## O2O HiShop云端接口
+## O2O HiPOS云端接口
 ### 接口调用鉴权
 在使用具体的业务接口前需要获得接口的使用权限，HiPOS云依据商户已经登记的域名（主机名）回调相应的接口，以此鉴定调用者的合法身份。
 
 ![业务授权](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=566h55CG5ZGYLT4rSGlTaG9w5bqU55SoOiAqUE9T5Lia5YqhKgoADgwAJAVQT1PkupE6IOiOt-WPllRva2VuICjln7rkuo7ln5_lkI0pCgAdCC0tPi0ATA48POi_lOWbnj4-Cmxvb3Ag562J5b6FAEAF5Zue6LCDCiAgICAAZg4AgQ4OACASZW5kAGgKAIE7EFtjYWxsYmFja13mjojmnYMAgSsF6YCa55-lAIFNDgCBJgUAgVQIAIEcCwBwHOaJp-ihjOWFt-S9kwCCKgkARhEAgl8JOiA8POWujOaIkD4-Cg&s=earth)
+
+> PUT /token
+
+路径参数：
+> 无
+
+请求参数：
+>
+| 参数        | 类型        | 说明            | 必填  | 示例                                      |
+| :---------- | :---------- | :-------------- | :---- | :---------------------------------------- |
+| app_domain  | string      | 应用程序主机名  | 是    | www.shop123.com                           |
+| notify_url  | string      | Token 通知地址  | 是    | https://www.shop123.com/token_return.ashx |
+
+返回结果：
+>
+```
+// 成功获得授权
+{
+    "token_response": {
+        "code": "0",
+        "msg": "已获取授权并成功通知。"
+    }
+}
+
+// 无效的应用
+{
+    "token_response": {
+        "code": "0",
+        "msg": "已获取授权并成功通知。"
+    }
+}
+
+// 服务合约已经到期
+{
+    "token_response": {
+        "code": "0",
+        "msg": "已获取授权并成功通知。"
+    }
+}
+```
 
 ### 更新商户资料
 > PUT /merchants/{***merchantId***}
