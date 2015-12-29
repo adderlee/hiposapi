@@ -29,7 +29,7 @@
 
 ![业务授权](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=566h55CG5ZGYLT4rSGlTaG9w5bqU55SoOiAqUE9T5Lia5YqhKgoADgwAJAVQT1PkupE6IOiOt-WPllRva2VuICjln7rkuo7ln5_lkI0pCgAdCC0tPi0ATA48POi_lOWbnj4-Cmxvb3Ag562J5b6FAEAF5Zue6LCDCiAgICAAZg4AgQ4OACASZW5kAGgKAIE7EFtjYWxsYmFja13mjojmnYMAgSsF6YCa55-lAIFNDgCBJgUAgVQIAIEcCwBwHOaJp-ihjOWFt-S9kwCCKgkARhEAgl8JOiA8POWujOaIkD4-Cg&s=earth)
 
-> PUT /token
+> POST /token
 
 路径参数：
 > 无
@@ -54,15 +54,15 @@
 // 无效的应用
 {
     "token_response": {
-        "code": "0",
-        "msg": "已获取授权并成功通知。"
+        "code": "6001",
+        "msg": "无效的应用，请检查域名（主机名）是否正确。"
     }
 }
 // 服务合约已经到期
 {
     "token_response": {
-        "code": "0",
-        "msg": "已获取授权并成功通知。"
+        "code": "6002",
+        "msg": "服务合约已经到期，请尽快续约以免影响您的正常业务。"
     }
 }
 ```
