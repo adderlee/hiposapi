@@ -59,14 +59,83 @@
 <p><img src="https://www.websequencediagrams.com/cgi-bin/cdraw?lz=566h55CG5ZGYLT4r5LqR5ZWG5Z-OOiDmn6XnnIvkuqTmmJMKAA8JLT4rSGlQT1PkupEAHgXor6Lpl6jlupflj4oAEgWk5piT57uf6K6hCgAhCC0tPi0ATgs8PAAaDD4-Cm9wdCB0ZXh0CiAgICAAThwAgQcG6K-m5oOFACgFAEMfACQGPj4KZW5kAIE4Cy0-LQCBawk6IDw85a6M5oiQPj4K&amp;s=earth" alt="查询交易信息"></p>
 
 <h2>
-<a id="o2o-hishop云端接口" class="anchor" href="#o2o-hishop%E4%BA%91%E7%AB%AF%E6%8E%A5%E5%8F%A3" aria-hidden="true"><span class="octicon octicon-link"></span></a>O2O HiShop云端接口</h2>
+<a id="o2o-hipos云端接口" class="anchor" href="#o2o-hipos%E4%BA%91%E7%AB%AF%E6%8E%A5%E5%8F%A3" aria-hidden="true"><span class="octicon octicon-link"></span></a>O2O HiPOS云端接口</h2>
+
+<p><img src="https://www.websequencediagrams.com/cgi-bin/cdraw?lz=566h55CG5ZGYLT4rSGlTaG9w5bqU55SoOiAqUE9T5Lia5YqhKgoADgwAJAVQT1PkupE6IOiOt-WPllRva2VuICjln7rkuo7ln5_lkI0pCgAdCC0tPi0ATA48POi_lOWbnj4-Cmxvb3Ag562J5b6FAEAF5Zue6LCDCiAgICAAZg4AgQ4OACASZW5kAGgKAIE7EFtjYWxsYmFja13mjojmnYMAgSsF6YCa55-lAIFNDgCBJgUAgVQIAIEcCwBwHOaJp-ihjOWFt-S9kwCCKgkARhEAgl8JOiA8POWujOaIkD4-Cg&amp;s=earth" alt="业务授权"></p>
 
 <h3>
 <a id="接口调用鉴权" class="anchor" href="#%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E9%89%B4%E6%9D%83" aria-hidden="true"><span class="octicon octicon-link"></span></a>接口调用鉴权</h3>
 
-<p>在使用具体的业务接口前需要获得接口的使用权限，HiPOS云依据商户已经登记的域名（主机名）回调相应的接口，以此鉴定调用者的合法身份。</p>
+<p>您的应用发向HiPOS云API的每一个请求都必须包含授权令牌（Token），HiPOS将使用这个Token来识别应用的合法身份。出于安全原因，所有发放给应用的Token都有一定的有效期，请在Token即将过期前重新获取新的Token，以便后续业务的正常调用。</p>
 
-<p><img src="https://www.websequencediagrams.com/cgi-bin/cdraw?lz=566h55CG5ZGYLT4rSGlTaG9w5bqU55SoOiAqUE9T5Lia5YqhKgoADgwAJAVQT1PkupE6IOiOt-WPllRva2VuICjln7rkuo7ln5_lkI0pCgAdCC0tPi0ATA48POi_lOWbnj4-Cmxvb3Ag562J5b6FAEAF5Zue6LCDCiAgICAAZg4AgQ4OACASZW5kAGgKAIE7EFtjYWxsYmFja13mjojmnYMAgSsF6YCa55-lAIFNDgCBJgUAgVQIAIEcCwBwHOaJp-ihjOWFt-S9kwCCKgkARhEAgl8JOiA8POWujOaIkD4-Cg&amp;s=earth" alt="业务授权"></p>
+<blockquote>
+<p>POST /token</p>
+</blockquote>
+
+<p>路径参数：</p>
+
+<blockquote>
+<p>无</p>
+</blockquote>
+
+<p>请求参数：</p>
+
+<blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">类型</th>
+<th align="left">说明</th>
+<th align="left">必填</th>
+<th align="left">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">app_domain</td>
+<td align="left">string</td>
+<td align="left">应用程序主机名</td>
+<td align="left">是</td>
+<td align="left"><a href="http://www.shop123.com">www.shop123.com</a></td>
+</tr>
+<tr>
+<td align="left">notify_url</td>
+<td align="left">string</td>
+<td align="left">Token 通知地址</td>
+<td align="left">是</td>
+<td align="left"><a href="https://www.shop123.com/token_return.ashx">https://www.shop123.com/token_return.ashx</a></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+
+<p>返回结果：</p>
+
+<blockquote>
+<pre><code>// 成功获得授权
+{
+    "token_response": {
+        "code": "0",
+        "msg": "已获取授权并成功通知。"
+    }
+}
+// 无效的应用
+{
+    "token_response": {
+        "code": "6001",
+        "msg": "无效的应用，请检查域名（主机名）是否正确。"
+    }
+}
+// 服务合约已经到期
+{
+    "token_response": {
+        "code": "6002",
+        "msg": "服务合约已经到期，请尽快续约以免影响您的正常业务。"
+    }
+}
+</code></pre>
+</blockquote>
 
 <h3>
 <a id="更新商户资料" class="anchor" href="#%E6%9B%B4%E6%96%B0%E5%95%86%E6%88%B7%E8%B5%84%E6%96%99" aria-hidden="true"><span class="octicon octicon-link"></span></a>更新商户资料</h3>
