@@ -6,6 +6,51 @@
 2. 接口最大程度采用 [REST](https://zh.wikipedia.org/wiki/REST) 风格，简单易用。
 3. 接口返回数据统一使用 [json](https://zh.wikipedia.org/wiki/JSON) 格式。
 
+## 支持的 O2O 应用场景
+### 商户资料及支付设置
+
+![商户资料及支付设置](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=566h55CG5ZGYLT4r5LqR5ZWG5Z-OOiDllYbmiLforr7nva4KAA8JLT4AFwyvvOWFpeaUr-S7mAAXEitIaVBPU-S6kTog5pu05pawAEsHtYTmlpkKABUILS0-LQBrCzw86L-U5ZuePj4ALh0AZw0AHywtPi0AgWcJOiA8POWujOaIkD4-&s=earth)
+
+### 门店增加POS机
+
+![门店增加POS机](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=566h55CG5ZGYLT4r5LqR5ZWG5Z-OOiDlop7liqBQT1PmnLoKAA8JLT4AGAvnoa7lrprpl6jlupcAFwwrSGlQT1PkupE6IOivt-axguiuvuWkh-aOiOadg-eggQoAGAgtLT4tAGgLPDzov5Tlm54-Pgpsb29wIOetieW-heWbnuiwgwogICAgAHAXABsMZW5kAFUKAIFEDVtjYWxsYmFja10AgQMM5oiQ5Yqf6YCa55-lAIFcCy0-LQCBOwoAgQ0LABUNAIIxCTogPDwAgiQMAE8GPj4&s=earth)
+
+### 扫码提货
+
+![扫码提货](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=5Yiw5bqX6aG-5a6iLT4rUE9T5py6OiDmiavnoIHmj5DotKcKAA8GLT4rSGlQT1PkupE6IAAUBuS6pOaYkwoADwgtPivkupHllYbln446IOiOt-WPluiuouWNleeKtuaAgQoAFQktLT4tAEMKPDwAGgw-PgphbHQg5bCa5pyq5pSv5LuYCiAgICAAWwsAgR4I57q_5LiL5LuY5qy-AB8FAIEiCACBPwjlpITnkIYADxIAcA8APAblrozmiJA-PgplbmQAgT0X56Gu6K6kAIIQBwCBNRnmiJDlip8-PgCCDwotPi0AglEJAIJPBQAdBgCCUggtPi0AgnwMOiA8PACBBAk&s=earth)
+
+### 查询交易信息
+
+![查询交易信息](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=566h55CG5ZGYLT4r5LqR5ZWG5Z-OOiDmn6XnnIvkuqTmmJMKAA8JLT4rSGlQT1PkupEAHgXor6Lpl6jlupflj4oAEgWk5piT57uf6K6hCgAhCC0tPi0ATgs8PAAaDD4-Cm9wdCB0ZXh0CiAgICAAThwAgQcG6K-m5oOFACgFAEMfACQGPj4KZW5kAIE4Cy0-LQCBawk6IDw85a6M5oiQPj4K&s=earth)
+
+## O2O HiShop云端接口
+### 接口调用鉴权
+在使用具体的业务接口前需要获得接口的使用权限，HiPOS云依据商户已经登记的域名（主机名）回调相应的接口，以此鉴定调用者的合法身份。
+
+![业务授权](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=566h55CG5ZGYLT4rSGlTaG9w5bqU55SoOiAqUE9T5Lia5YqhKgoADgwAJAVQT1PkupE6IOiOt-WPllRva2VuICjln7rkuo7ln5_lkI0pCgAdCC0tPi0ATA48POi_lOWbnj4-Cmxvb3Ag562J5b6FAEAF5Zue6LCDCiAgICAAZg4AgQ4OACASZW5kAGgKAIE7EFtjYWxsYmFja13mjojmnYMAgSsF6YCa55-lAIFNDgCBJgUAgVQIAIEcCwBwHOaJp-ihjOWFt-S9kwCCKgkARhEAgl8JOiA8POWujOaIkD4-Cg&s=earth)
+
+### 更新商户资料
+> PUT /merchants/{***merchantId***}
+
+### 更新支付方式
+> PUT /merchants/{***merchantId***}/payments
+
+### 请求设备授权码
+> GET /merchants/{***merchantId***}/stores/{***storeId***}/authcode
+
+### 查询交易统计
+> GET /merchants/{***merchantId***}/stores/{***storeId***}/trades/overview
+
+### 查询交易详情
+> GET /merchants/{***merchantId***}/stores/{***storeId***}/trades/detail
+
+## O2O 应用端接口
+### [回调]返回授权Token通知
+### [回调]设备授权成功通知
+### 获取订单详情
+### 确认提货
+
+
 ## 独立软件供应商及开发者（ISV）
 具备开发及接入能力的合作伙伴与开发者以ISV的身份为商户提供高度可定制的解决方案。
 
