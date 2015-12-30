@@ -27,41 +27,42 @@
 
 ![业务授权](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=566h55CG5ZGYLT4rSGlTaG9w5bqU55SoOiAqUE9T5Lia5YqhKgoADgwAJAVQT1PkupE6IOiOt-WPllRva2VuICjln7rkuo7ln5_lkI0pCgAdCC0tPi0ATA48POi_lOWbnj4-Cmxvb3Ag562J5b6FAEAF5Zue6LCDCiAgICAAZg4AgQ4OACASZW5kAGgKAIE7EFtjYWxsYmFja13mjojmnYMAgSsF6YCa55-lAIFNDgCBJgUAgVQIAIEcCwBwHOaJp-ihjOWFt-S9kwCCKgkARhEAgl8JOiA8POWujOaIkD4-Cg&s=earth)
 
-### 接口调用鉴权
-您的应用发向HiPOS云API的每一个请求都必须包含授权令牌（Token），HiPOS将使用这个Token来识别应用的合法身份。出于安全原因，所有发放给应用的Token都有一定的有效期，请在Token即将过期前重新获取新的Token，以便后续业务的正常调用。
+### 接口调用鉴权（HiShop旗下产品专用）
+HiShop旗下自有产品在使用HiPOS接口前，可以通过预先登记的网站域名（主机名）获取授权访问令牌（Token），HiPOS将使用这个Token来识别应用的合法身份。出于安全原因，所有发放给应用的Token都有一定的有效期，请在Token即将过期前重新获取新的Token，以便后续业务的正常调用。
 
-> POST /token
+> POST /openapi/token/hishop
 
 路径参数：
 > 无
 
 请求参数：
 >
-| 参数        | 类型        | 说明            | 必填  | 示例                                      |
-| :---------- | :---------- | :-------------- | :---- | :---------------------------------------- |
-| app_domain  | string      | 应用程序主机名  | 是    | www.shop123.com                           |
-| notify_url  | string      | Token 通知地址  | 是    | https://www.shop123.com/token_return.ashx |
+| 参数          | 类型      | 说明              | 必填  | 示例                                      |
+| :------------ | :-------- | :---------------- | :---- | :---------------------------------------- |
+| hostname      | string    | 应用程序主机名    | 是    | www.shop123.com                           |
+| notify_url    | string    | Token 通知地址    | 是    | https://www.shop123.com/token_return.ashx |
 
 返回结果：
 >
 ```
 // 成功获得授权
 {
-    "token_response": {
+    "hishop_token_response": {
         "code": "0",
-        "msg": "已获取授权并成功通知。"
+        "msg": "已获取授权并成功通知。",
+        "merchant_id": "10011"
     }
 }
 // 无效的应用
 {
-    "token_response": {
+    "hishop_token_response": {
         "code": "6001",
         "msg": "无效的应用，请检查域名（主机名）是否正确。"
     }
 }
 // 服务合约已经到期
 {
-    "token_response": {
+    "hishop_token_response": {
         "code": "6002",
         "msg": "服务合约已经到期，请尽快续约以免影响您的正常业务。"
     }
@@ -69,19 +70,59 @@
 ```
 
 ### 更新商户资料
-> PUT /merchants/{***merchantId***}
+> PUT /openapi/merchants/{***merchant_id***}
+
+路径参数：
+>
+| 参数          | 类型      | 说明              | 必填  | 示例                                      |
+| :------------ | :-------- | :---------------- | :---- | :---------------------------------------- |
+| merchant_id   | string    | 商户号            | 是    | 10011                                     |
+
+请求参数：
+>
+| 参数          | 类型      | 说明              | 必填  | 示例                                      |
+| :------------ | :-------- | :---------------- | :---- | :---------------------------------------- |
+| name          | string    | 商户名称          | 是    | 海商咖啡                                  |
+| contact       | string    | 联系人            | 是    | 吕轻候                                    |
+| mobile        | string    | 手机号码          | 是    | 18866667777                               |
+
+返回结果：
+>
+```
+// 更新成功
+{
+    "merchant_update_response": {
+        "code": "0",
+        "msg": "商户资料更新成功。"
+    }
+}
+// 商户不存在
+{
+    "merchant_update_response": {
+        "code": "6011",
+        "msg": "该商户不存在，请检查商户号是否正确。"
+    }
+}
+// 提交的资料无效
+{
+    "merchant_update_response": {
+        "code": "6012",
+        "msg": "提交的商户资料不合法，请确认资料填写正确。"
+    }
+}
+```
 
 ### 更新支付方式
-> PUT /merchants/{***merchantId***}/payments
+> PUT /openapi/merchants/{***merchantId***}/payments
 
 ### 请求设备授权码
-> GET /merchants/{***merchantId***}/stores/{***storeId***}/authcode
+> GET /openapi/merchants/{***merchantId***}/stores/{***storeId***}/authcode
 
 ### 查询交易统计
-> GET /merchants/{***merchantId***}/stores/{***storeId***}/trades/overview
+> GET /openapi/merchants/{***merchantId***}/stores/{***storeId***}/trades/overview
 
 ### 查询交易详情
-> GET /merchants/{***merchantId***}/stores/{***storeId***}/trades/detail
+> GET /openapi/merchants/{***merchantId***}/stores/{***storeId***}/trades/detail
 
 ## O2O 应用端接口
 ### [回调]返回授权Token通知
