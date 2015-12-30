@@ -48,22 +48,23 @@ HiShop旗下自有产品在使用HiPOS接口前，可以通过预先登记的网
 // 成功获得授权
 {
     "hishop_token_response": {
-        "code": "0",
+        "code": 0,
         "msg": "已获取授权并成功通知。",
-        "merchant_id": "10011"
+        "token": "b73fc4a175584f8dd13c267467bd717c1aa270c7"
+        "merchant_id": 10011
     }
 }
 // 无效的应用
 {
     "hishop_token_response": {
-        "code": "6001",
+        "code": 6001,
         "msg": "无效的应用，请检查域名（主机名）是否正确。"
     }
 }
 // 服务合约已经到期
 {
     "hishop_token_response": {
-        "code": "6002",
+        "code": 6002,
         "msg": "服务合约已经到期，请尽快续约以免影响您的正常业务。"
     }
 }
@@ -92,21 +93,21 @@ HiShop旗下自有产品在使用HiPOS接口前，可以通过预先登记的网
 // 更新成功
 {
     "merchant_update_response": {
-        "code": "0",
+        "code": 0,
         "msg": "商户资料更新成功。"
     }
 }
 // 商户不存在
 {
     "merchant_update_response": {
-        "code": "6011",
+        "code": 6011,
         "msg": "该商户不存在，请检查商户号是否正确。"
     }
 }
 // 提交的资料无效
 {
     "merchant_update_response": {
-        "code": "6012",
+        "code": 6012,
         "msg": "提交的商户资料不合法，请确认资料填写正确。"
     }
 }
