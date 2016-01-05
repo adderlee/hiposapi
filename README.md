@@ -27,10 +27,11 @@
 
 ![业务授权](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=566h55CG5ZGYLT4rSGlTaG9w5bqU55SoOiAqUE9T5Lia5YqhKgoADgwAJAVQT1PkupE6IOiOt-WPllRva2VuICjln7rkuo7ln5_lkI0pCgAdCC0tPi0ATA48POi_lOWbnj4-Cmxvb3Ag562J5b6FAEAF5Zue6LCDCiAgICAAZg4AgQ4OACASZW5kAGgKAIE7EFtjYWxsYmFja13mjojmnYMAgSsF6YCa55-lAIFNDgCBJgUAgVQIAIEcCwBwHOaJp-ihjOWFt-S9kwCCKgkARhEAgl8JOiA8POWujOaIkD4-Cg&s=earth)
 
-### 接口调用鉴权（HiShop旗下产品专用）
+## API鉴权（HiShop旗下产品专用）
 HiShop旗下自有产品在使用HiPOS接口前，可以通过预先登记的网站域名（主机名）获取授权访问令牌（Token），HiPOS将使用这个Token来识别应用的合法身份。出于安全原因，所有发放给应用的Token都有一定的有效期，请在Token即将过期前重新获取新的Token，以便后续业务的正常调用。
 
-> POST /openapi/token/hishop
+### 获取商户API密钥
+> POST /openapi/auth/hishop
 
 路径参数：
 > 无
@@ -45,30 +46,58 @@ HiShop旗下自有产品在使用HiPOS接口前，可以通过预先登记的网
 返回结果：
 >
 ```
-// 成功获得授权
+// 成功获得密钥
 {
-    "hishop_token_response": {
+    "hishop_auth_response": {
         "code": 0,
-        "msg": "已获取授权并成功通知。",
-        "token": "b73fc4a175584f8dd13c267467bd717c1aa270c7"
-        "merchant_id": 10011
-    }
-}
-// 无效的应用
-{
-    "hishop_token_response": {
-        "code": 6001,
-        "msg": "无效的应用，请检查域名（主机名）是否正确。"
-    }
-}
-// 服务合约已经到期
-{
-    "hishop_token_response": {
-        "code": 6002,
-        "msg": "服务合约已经到期，请尽快续约以免影响您的正常业务。"
+        "msg": "已获取授权密钥并成功通知。",
+        "notify_url": "http://ysc.liwenwu.com/auth_callback.ashx"
     }
 }
 ```
+
+### 获取Access Token
+在正式调用业务接口前需要通过OAuth2获得**Access Token**，并且具有一定的有效期，再次调用业务接口前需要检查**Access Token**是否已经**过期**，否则需要重新获取。
+> POST /openapi/token
+
+调用参数：
+
+HTTP请求头中将 app_id 与 app_secret使用“:”拼接后使用**Base64**编码，使用**[HTTP基本认证](https://zh.wikipedia.org/wiki/HTTP%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%81)**
+
+```
+Authorization: Basic YzRjYTQyMzhhMGI5MjM4MjBkY2M1MDlhNmY3NTg0OWI6YzQwOTY2ZThmNDBhNDU1NDI1NjEwNjA2NTYxODE5ZmEyYTU3OGMzMg==
+```
+
+正确返回数据：
+```
+{
+  "token_type": "bearer",
+  "access_token": "f7420dad8e471ab7df0f6b4b646f9010aea3e131",
+  "expires_in": 3600
+}
+```
+
+<a name="API接口签名规范" />
+### API接口签名规范
+原始业务数据如：
+>a=1&b=2&z=3
+
+加入随机时间码：
+>rnd=1447386720779
+
+按字母序形成待签名字符串：
+>a=1&b=2&rnd=1447386720779&z=3
+
+将"sign=[App密钥]"拼接到此字符串的最后面，形成：
+>a=1&b=2&rnd=1447386720779&z=3&sign=c40966e8f40a455425610606561819fa2a578c32
+
+将此字符串进行SHA1运算，得到签名：
+>sign = SHA1('a=1&b=2&rnd=1447386720779&z=3&sign=c40966e8f40a455425610606561819fa2a578c32')
+
+最后向接口POST的数据如下：
+>a=1&b=2&rnd=1447386720779&z=3&sign=cf81e8e0d756db9f0e301bf0b64d8525ef3edf85
+
+## 云端接口
 
 ### 更新商户资料
 > PUT /openapi/merchants/{***merchant_id***}
@@ -130,43 +159,3 @@ HiShop旗下自有产品在使用HiPOS接口前，可以通过预先登记的网
 ### [回调]设备授权成功通知
 ### 获取订单详情
 ### 确认提货
-
-
-## 独立软件供应商及开发者（ISV）
-具备开发及接入能力的合作伙伴与开发者以ISV的身份为商户提供高度可定制的解决方案。
-
-![ISV申请流程](http://www.websequencediagrams.com/cgi-bin/cdraw?lz=dGl0bGUgSVNW55Sz6K-35rWB56iLCklTVi0-K0hpUE9T5ZCI5L2c5LiT5ZGYOiAAIAYKAAkRLT4AGhPotYTotKjlrqHmoLgKYWx0IOWQiOagvAogICAgADASLT4tSVNWOiDpgJrov4fvvIhpc3ZJZCwgaXN2U2VjcmV077yJCmVsc2Ug5ouS57udACcgqbPlm54KZW5k&s=earth)
-
-## ISV专用接口
-供ISV向商户提供便捷的服务开通及配置能力，接口列表如下：
-
-### 注册商户
-> PUT /v1/isv/{***isvId***}/merchants
-
-路径参数：
->
-| 参数        | 类型        | 说明            | 示例                                  |
-| :---------- | :---------- | :-------------- | :------------------------------------ |
-| isvId       | string      | ISV 唯一标识    | 20151001                              |
-
-请求参数：
->
-| 参数        | 类型        | 说明            | 必填  | 示例                                  |
-| :---------- | :---------- | :-------------- | :---- | :------------------------------------ |
-| name        | string      | 商户名称        | 是    | 海商咖啡                              |
-| contact     | string      | 联系人姓名      | 是    | 吕轻候                                |
-| mobile      | string      | 手机            | 是    | 18551838888                           |
-| telephone   | string      | 电话            |       | 0731-66666666                         |
-| email       | string      | 电子邮箱        |       | lvqinghou@163.com                     |
-| address     | string      | 地址            |       | 湖南省长沙市芙蓉区韶山北路139号       |
-
-返回结果：
->
-```
-{
-  merchant_id: '1001',
-  app_id: 'c4ca4238a0b923820dcc509a6f75849b',
-  app_secret: 'c40966e8f40a455425610606561819fa2a578c32',
-  expire_at: '2016-11-23 00:59:13'
-}
-```
