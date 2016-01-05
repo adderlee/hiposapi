@@ -50,7 +50,7 @@ HiShop旗下自有产品在使用HiPOS接口前，可以通过预先登记的网
 | 参数          | 类型      | 说明              | 必填  | 示例                                      |
 | :------------ | :-------- | :---------------- | :---- | :---------------------------------------- |
 | hostname      | string    | 应用程序主机名    | 是    | www.shop123.com                           |
-| notify_url    | string    | Token 通知地址    | 是    | https://www.shop123.com/token_return.ashx |
+| notify_url    | string    | Token 通知地址    | 是    | https://www.shop123.com/auth_callback.ashx |
 
 返回结果：
 >
@@ -59,29 +59,8 @@ HiShop旗下自有产品在使用HiPOS接口前，可以通过预先登记的网
 {
     "hishop_auth_response": {
         "message": "已获取授权密钥并成功通知。",
-        "notify_url": "http://ysc.liwenwu.com/auth_callback.ashx"
+        "notify_url": "http://www.shop123.com/auth_callback.ashx"
     }
-}
-```
-
-### 获取Access Token
-在正式调用业务接口前需要通过OAuth2获得**Access Token**，并且具有一定的有效期，再次调用业务接口前需要检查**Access Token**是否已经**过期**，否则需要重新获取。
-> POST /openapi/token
-
-调用参数：
-
-HTTP请求头中将 app_id 与 app_secret使用“:”拼接后使用**Base64**编码，使用**[HTTP基本认证](https://zh.wikipedia.org/wiki/HTTP%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%81)**
-
-```
-Authorization: Basic YzRjYTQyMzhhMGI5MjM4MjBkY2M1MDlhNmY3NTg0OWI6YzQwOTY2ZThmNDBhNDU1NDI1NjEwNjA2NTYxODE5ZmEyYTU3OGMzMg==
-```
-
-正确返回数据：
-```
-{
-  "token_type": "bearer",
-  "access_token": "f7420dad8e471ab7df0f6b4b646f9010aea3e131",
-  "expires_in": 3600
 }
 ```
 
