@@ -23,12 +23,10 @@
 
 ![查询交易信息](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=566h55CG5ZGYLT4r5LqR5ZWG5Z-OOiDmn6XnnIvkuqTmmJMKAA8JLT4rSGlQT1PkupEAHgXor6Lpl6jlupflj4oAEgWk5piT57uf6K6hCgAhCC0tPi0ATgs8PAAaDD4-Cm9wdCB0ZXh0CiAgICAAThwAgQcG6K-m5oOFACgFAEMfACQGPj4KZW5kAIE4Cy0-LQCBawk6IDw85a6M5oiQPj4K&s=earth)
 
-## O2O HiPOS云端接口
-
-![业务授权](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=566h55CG5ZGYLT4rSGlTaG9w5bqU55SoOiAqUE9T5Lia5YqhKgoADgwAJAVQT1PkupE6IOiOt-WPllRva2VuICjln7rkuo7ln5_lkI0pCgAdCC0tPi0ATA48POi_lOWbnj4-Cmxvb3Ag562J5b6FAEAF5Zue6LCDCiAgICAAZg4AgQ4OACASZW5kAGgKAIE7EFtjYWxsYmFja13mjojmnYMAgSsF6YCa55-lAIFNDgCBJgUAgVQIAIEcCwBwHOaJp-ihjOWFt-S9kwCCKgkARhEAgl8JOiA8POWujOaIkD4-Cg&s=earth)
-
 ## API鉴权（HiShop旗下产品专用）
 HiShop旗下自有产品在使用HiPOS接口前，可以通过预先登记的网站域名（主机名）获取授权访问令牌（Token），HiPOS将使用这个Token来识别应用的合法身份。出于安全原因，所有发放给应用的Token都有一定的有效期，请在Token即将过期前重新获取新的Token，以便后续业务的正常调用。
+
+![获取商户API密钥](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=SGlTaG9w5bqU55SoLT4rSGlQT1PkupE6IOiOt-WPluWVhuaIt0FQSeWvhumSpSAo5Z-65LqO5Z-f5ZCNKQoAJwgtLT4tAD4MOiA8POi_lOWbnj4-Cmxvb3Ag562J5b6F5Zue6LCDCiAgICAAaw4ALw4AIA1lbmQAXgo-KwBZDltjYWxsYmFja10AgRsPAGMHAIFSDQCBIAUAgVgIAIEWCw&s=earth)
 
 ### 获取商户API密钥
 > POST /openapi/auth/hishop
@@ -97,7 +95,7 @@ Authorization: Basic YzRjYTQyMzhhMGI5MjM4MjBkY2M1MDlhNmY3NTg0OWI6YzQwOTY2ZThmNDB
 最后向接口POST的数据如下：
 >a=1&b=2&rnd=1447386720779&z=3&sign=cf81e8e0d756db9f0e301bf0b64d8525ef3edf85
 
-## 云端接口
+## O2O HiPOS云端接口
 
 ### 更新商户资料
 > PUT /openapi/merchants/{***merchant_id***}
