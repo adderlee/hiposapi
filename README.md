@@ -153,7 +153,10 @@ Authorization: Basic YzRjYTQyMzhhMGI5MjM4MjBkY2M1MDlhNmY3NTg0OWI6YzQwOTY2ZThmNDB
 > GET /openapi/merchants/{***merchantId***}/stores/{***storeId***}/trades/detail
 
 ## O2O 应用端接口
-### [回调]返回授权Token通知
+### [回调]商户API密钥回调
+> POST 方式
+示例数据：merchant_id=8&app_id=19244b4cb07d1792bd2fcb5870f841c9&app_secret=c7640bb34ccf3b5335df9383dcc4b195e9a914c8
+
 ### [回调]设备授权成功通知
 ### 获取订单详情
 ### 确认提货
