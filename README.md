@@ -23,6 +23,17 @@
 
 ![查询交易信息](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=566h55CG5ZGYLT4r5LqR5ZWG5Z-OOiDmn6XnnIvkuqTmmJMKAA8JLT4rSGlQT1PkupEAHgXor6Lpl6jlupflj4oAEgWk5piT57uf6K6hCgAhCC0tPi0ATgs8PAAaDD4-Cm9wdCB0ZXh0CiAgICAAThwAgQcG6K-m5oOFACgFAEMfACQGPj4KZW5kAIE4Cy0-LQCBawk6IDw85a6M5oiQPj4K&s=earth)
 
+## 接口返回错误信息格式
+>
+```
+{
+    "error": {
+        "code": 1001,
+        "message": "缺少必须的参数或参数值无效！"
+    }
+}
+```
+
 ## API鉴权（HiShop旗下产品专用）
 HiShop旗下自有产品在使用HiPOS接口前，可以通过预先登记的网站域名（主机名）获取授权访问令牌（Token），HiPOS将使用这个Token来识别应用的合法身份。出于安全原因，所有发放给应用的Token都有一定的有效期，请在Token即将过期前重新获取新的Token，以便后续业务的正常调用。
 
@@ -47,8 +58,7 @@ HiShop旗下自有产品在使用HiPOS接口前，可以通过预先登记的网
 // 成功获得密钥
 {
     "hishop_auth_response": {
-        "code": 0,
-        "msg": "已获取授权密钥并成功通知。",
+        "message": "已获取授权密钥并成功通知。",
         "notify_url": "http://ysc.liwenwu.com/auth_callback.ashx"
     }
 }
@@ -120,22 +130,7 @@ Authorization: Basic YzRjYTQyMzhhMGI5MjM4MjBkY2M1MDlhNmY3NTg0OWI6YzQwOTY2ZThmNDB
 // 更新成功
 {
     "merchant_update_response": {
-        "code": 0,
-        "msg": "商户资料更新成功。"
-    }
-}
-// 商户不存在
-{
-    "merchant_update_response": {
-        "code": 6011,
-        "msg": "该商户不存在，请检查商户号是否正确。"
-    }
-}
-// 提交的资料无效
-{
-    "merchant_update_response": {
-        "code": 6012,
-        "msg": "提交的商户资料不合法，请确认资料填写正确。"
+        "message": "商户资料更新成功。"
     }
 }
 ```
