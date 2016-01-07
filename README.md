@@ -115,7 +115,7 @@ grant_type=client_credentials
 >
 | 参数          | 类型      | 说明              | 必填  | 示例                                      |
 | :------------ | :-------- | :---------------- | :---- | :---------------------------------------- |
-| merchant_id   | string    | 商户号            | 是    | 10011                                     |
+| merchant_id   | string    | 商户号            | 是    | 9                                         |
 
 请求参数：
 >
@@ -132,6 +132,29 @@ grant_type=client_credentials
 {
     "merchant_update_response": {
         "message": "商户资料更新成功。"
+    }
+}
+```
+
+### 生成支付宝开发者公钥
+> POST /openapi/merchants/{***merchant_id***}/alipaykey
+
+路径参数：
+>
+| 参数          | 类型      | 说明              | 必填  | 示例                                      |
+| :------------ | :-------- | :---------------- | :---- | :---------------------------------------- |
+| merchant_id   | string    | 商户号            | 是    | 9                                         |
+
+请求参数：
+> 无
+
+返回结果：
+>
+```
+// 更新成功
+{
+    "merchant_alipaykey_response": {
+        "public_key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+gYLp1daQKQhD944C40KQV9SULDzXwHkcyhrJuGJGfRIeGyVVs4BFtR/m6LWOPiClb4FSP8BOP3fOOY76M75n8NRImJf47LtJ8qLHhtKiz/DphHn56mSRDo6IKxrzsWfMxwWeIOaFcFggvmOGjlq++/JtrnM3k6iHwvXj3KkVTwIDAQAB"
     }
 }
 ```
