@@ -50,7 +50,7 @@ HiShop旗下自有产品在使用HiPOS接口前，可以通过预先登记的网
 | 参数          | 类型      | 说明              | 必填  | 示例                                      |
 | :------------ | :-------- | :---------------- | :---- | :---------------------------------------- |
 | hostname      | string    | 应用程序主机名    | 是    | www.shop123.com                           |
-| notify_url    | string    | Token 通知地址    | 是    | https://www.shop123.com/auth_callback.ashx |
+| notify_url    | string    | Token 通知地址    | 是    | https://www.shop123.com/auth_callback.ashx|
 
 返回结果：
 >
@@ -116,8 +116,35 @@ grant_type=client_credentials
 }
 ```
 
-### 生成支付宝开发者公钥
-> POST /openapi/merchants/{***merchant_id***}/alipaykey
+### 更新 HiShopO2O 功能接口设置
+> POST /openapi/merchants/{***merchant_id***}/hishopo2o
+
+路径参数：
+>
+| 参数          | 类型      | 说明              | 必填  | 示例                                      |
+| :------------ | :-------- | :---------------- | :---- | :---------------------------------------- |
+| merchant_id   | string    | 商户号            | 是    | 9                                         |
+
+请求参数：
+>
+| 参数          | 类型      | 说明              | 必填  | 示例                                      |
+| :------------ | :-------- | :---------------- | :---- | :---------------------------------------- |
+| status        | string    | 订单状态接口      | 是    | https://www.shop123.com/tr_status.ashx    |
+| confirm       | string    | 订单确认接口      | 是    | https://www.shop123.com/tr_confirm.ashx   |
+
+返回结果：
+>
+```
+// 更新成功
+{
+    "merchant_hishopo2o_response": {
+        "message": "商户资料更新成功。"
+    }
+}
+```
+
+### 获取支付宝开发者公钥
+> GET /openapi/merchants/{***merchant_id***}/alipaykey
 
 路径参数：
 >
@@ -131,7 +158,7 @@ grant_type=client_credentials
 返回结果：
 >
 ```
-// 更新成功
+// 成功
 {
     "merchant_alipaykey_response": {
         "public_key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+gYLp1daQKQhD944C40KQV9SULDzXwHkcyhrJuGJGfRIeGyVVs4BFtR/m6LWOPiClb4FSP8BOP3fOOY76M75n8NRImJf47LtJ8qLHhtKiz/DphHn56mSRDo6IKxrzsWfMxwWeIOaFcFggvmOGjlq++/JtrnM3k6iHwvXj3KkVTwIDAQAB"
