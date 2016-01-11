@@ -129,6 +129,7 @@ grant_type=client_credentials
 >
 | 参数          | 类型      | 说明              | 必填  | 示例                                      |
 | :------------ | :-------- | :---------------- | :---- | :---------------------------------------- |
+| authqr        | string    | 设备授权回调      | 是    | https://www.shop123.com/authqr.ashx       |
 | status        | string    | 订单状态接口      | 是    | https://www.shop123.com/tr_status.ashx    |
 | confirm       | string    | 订单确认接口      | 是    | https://www.shop123.com/tr_confirm.ashx   |
 
@@ -233,6 +234,9 @@ grant_type=client_credentials
 > POST 方式
 示例数据：merchant_id=8&app_id=19244b4cb07d1792bd2fcb5870f841c9&app_secret=c7640bb34ccf3b5335df9383dcc4b195e9a914c8
 
-### [回调]设备授权成功通知
+### [回调]设备授权回调
+> POST 方式
+示例数据：device_id=3826ef14abfa52ca
+
 ### 获取订单详情
 ### 确认提货
