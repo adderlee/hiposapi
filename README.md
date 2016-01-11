@@ -196,9 +196,31 @@ grant_type=client_credentials
 }
 ```
 
-### 请求设备授权码
-> GET /openapi/merchants/{***merchant_id***}/hishop/authcode
+### 请求生成设备授权码
+> POST /openapi/merchants/{***merchant_id***}/hishop/authcode
 
+路径参数：
+>
+| 参数          | 类型      | 说明              | 必填  | 示例                                      |
+| :------------ | :-------- | :---------------- | :---- | :---------------------------------------- |
+| merchant_id   | string    | 商户号            | 是    | 9                                         |
+
+请求参数：
+>
+| 参数          | 类型      | 说明              | 必填  | 示例                                      |
+| :------------ | :-------- | :---------------- | :---- | :---------------------------------------- |
+| store_name    | string    | 门店名称          | 是    | 大剧院店                                  |
+
+返回结果：
+>
+```
+// 调用成功返回授权二维码
+{
+    "merchant_authcode_response": {
+        "qr": "WCusK9uPh4HraXO1QFectz61OTo="
+    }
+}
+```
 ### 查询交易统计
 > GET /openapi/merchants/{***merchant_id***}/hishop/trades
 
