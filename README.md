@@ -117,7 +117,7 @@ grant_type=client_credentials
 ```
 
 ### 更新 HiShopO2O 功能接口设置
-> POST /openapi/merchants/{***merchant_id***}/hishopo2o
+> PUT /openapi/merchants/{***merchant_id***}/hishopo2o
 
 路径参数：
 >
@@ -167,16 +167,43 @@ grant_type=client_credentials
 ```
 
 ### 更新支付方式
-> PUT /openapi/merchants/{***merchantId***}/payments
+> PUT /openapi/merchants/{***merchant_id***}/payments
+
+路径参数：
+>
+| 参数          | 类型      | 说明              | 必填  | 示例                                      |
+| :------------ | :-------- | :---------------- | :---- | :---------------------------------------- |
+| merchant_id   | string    | 商户号            | 是    | 9                                         |
+
+请求参数：
+>
+| 参数          | 类型      | 说明              | 必填  | 示例                                      |
+| :------------ | :-------- | :---------------- | :---- | :---------------------------------------- |
+| ali_app_id    | string    | 支付宝AppId       | 是    | 2015101700468946                          |
+| wx_app_id     | string    | 公众号AppId       | 是    | wx7afb8b71daee6a13                        |
+| wx_mch_id     | string    | 微信支付商户号    | 是    | 1277664401                                |
+| wx_pay_secret | string    | 微信支付API密钥   | 是    | fd70927a9800def8c49XXXXXXXXXXXXX          |
+| wx_pay_cert   | string    | 微信支付证书(B64) | 是    | MIILOAIBAzCCCwIGCSqGSIb3DQEHAaCCCvME..... |
+
+返回结果：
+>
+```
+// 更新成功
+{
+    "merchant_payments_response": {
+        "message": "支付设置更新成功。"
+    }
+}
+```
 
 ### 请求设备授权码
-> GET /openapi/merchants/{***merchantId***}/stores/{***storeId***}/authcode
+> GET /openapi/merchants/{***merchant_id***}/hishop/authcode
 
 ### 查询交易统计
-> GET /openapi/merchants/{***merchantId***}/stores/{***storeId***}/trades/overview
+> GET /openapi/merchants/{***merchant_id***}/hishop/trades
 
 ### 查询交易详情
-> GET /openapi/merchants/{***merchantId***}/stores/{***storeId***}/trades/detail
+> GET /openapi/merchants/{***merchant_id***}/hishop/trades/detail
 
 ## O2O 应用端接口
 ### [回调]商户API密钥回调
