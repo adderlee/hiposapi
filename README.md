@@ -221,6 +221,7 @@ grant_type=client_credentials
     }
 }
 ```
+
 ### 查询交易统计
 > GET /openapi/merchants/{***merchant_id***}/hishop/trades
 
