@@ -138,7 +138,7 @@ grant_type=client_credentials
 // 更新成功
 {
     "merchant_hishopo2o_response": {
-        "message": "商户资料更新成功。"
+        "message": "HiShopO2O设置更新成功。"
     }
 }
 ```
