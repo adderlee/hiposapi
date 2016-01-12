@@ -111,7 +111,7 @@ grant_type=client_credentials
 // 更新成功
 {
     "merchant_update_response": {
-        "message": "商户资料更新成功。"
+        "expire_at": "2017-01-11T09:07:30.904Z"
     }
 }
 ```
