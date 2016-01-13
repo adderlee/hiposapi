@@ -271,6 +271,7 @@ grant_type=client_credentials
 
 返回结果：
 >
+```
 {
     "confirming_response": {
         "result": "ok"
