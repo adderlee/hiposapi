@@ -239,10 +239,47 @@ grant_type=client_credentials
 | store_name    | string    | 门店名称          | 否    | 大剧院店                                  |
 | from          | string    | 开始日期          | 是    | 20151017                                  |
 | to            | string    | 截止日期          | 是    | 20151116                                  |
+| page          | number    | 当前页码          | 否    | 1                                         |
+| page_size     | number    | 每页返回数量      | 否    | 10                                        |
 
 返回结果：
 >
 ```
+{
+    "merchant_trades_response": {
+        "page": 1,
+        "page_size": 10,
+        "page_count": 1,
+        "detail": [
+            {
+                "id": "56937a63d5c8c66e0948f58f",
+                "name": "望京SOHO店",
+                "total": 0.07,
+                "count": 4,
+                "devices": [
+                    {
+                        "device_id": "3826ef14abfa52ca",
+                        "total": 0.07,
+                        "count": 4
+                    }
+                ]
+            },
+            {
+                "id": "56937a49d5c8c66e0948f58e",
+                "name": "大剧院店",
+                "total": 0.05,
+                "count": 5,
+                "devices": [
+                    {
+                        "device_id": "3826ef14abfa52ca",
+                        "total": 0.05,
+                        "count": 5
+                    }
+                ]
+            }
+        ]
+    }
+}
 ```
 
 ### 查询交易详情
@@ -263,6 +300,8 @@ grant_type=client_credentials
 | hishop_only   | boolean   | 仅限商城订单      | 否    | true                                      |
 | from          | string    | 开始日期          | 是    | 20151017                                  |
 | to            | string    | 截止日期          | 是    | 20151116                                  |
+| page          | number    | 当前页码          | 否    | 1                                         |
+| page_size     | number    | 每页返回数量      | 否    | 10                                        |
 
 返回结果：
 >
