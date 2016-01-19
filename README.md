@@ -306,6 +306,47 @@ grant_type=client_credentials
 返回结果：
 >
 ```
+{
+    "merchant_trades_detail_response": {
+        "page": 1,
+        "page_size": 10,
+        "page_count": 1,
+        "detail": [
+            {
+                "_id": "8600001300000200000053",
+                "code": null,
+                "amount": 0.01,
+                "method": "cash",
+                "tid": "8600001300000200000053",
+                "paid_at": "2016-01-19T06:15:35.231Z"
+            },
+            {
+                "_id": "8600001300000200000054",
+                "code": null,
+                "amount": 0.03,
+                "method": "cash",
+                "tid": "8600001300000200000054",
+                "paid_at": "2016-01-19T06:16:06.767Z"
+            },
+            {
+                "_id": "8600001300000200000055",
+                "code": null,
+                "amount": 0.01,
+                "method": "weixin",
+                "tid": "8600001300000200000055",
+                "paid_at": "2016-01-19T06:16:33.116Z"
+            },
+            {
+                "_id": "8600001300000200000056",
+                "code": null,
+                "amount": 0.02,
+                "method": "alipay",
+                "tid": "8600001300000200000056",
+                "paid_at": "2016-01-19T06:17:23.037Z"
+            }
+        ]
+    }
+}
 ```
 
 ## O2O 应用端接口
