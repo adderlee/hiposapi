@@ -249,18 +249,20 @@ grant_type=client_credentials
     "merchant_trades_response": {
         "page": 1,
         "page_size": 10,
-        "page_count": 1,
+        "items_count": 2,
+        "total": 0.18,
+        "count": 10,
         "detail": [
             {
                 "id": "56937a63d5c8c66e0948f58f",
                 "name": "望京SOHO店",
-                "total": 0.07,
-                "count": 4,
+                "total": 0.13,
+                "count": 5,
                 "devices": [
                     {
                         "device_id": "3826ef14abfa52ca",
-                        "total": 0.07,
-                        "count": 4
+                        "total": 0.13,
+                        "count": 5
                     }
                 ]
             },
@@ -298,6 +300,7 @@ grant_type=client_credentials
 | :------------ | :-------- | :---------------- | :---- | :---------------------------------------- |
 | device_id     | string    | 门店编号          | 否    | 3826ef14abfa52ca                          |
 | hishop_only   | boolean   | 仅限商城订单      | 否    | true                                      |
+| code          | string    | 提货单号          | 否    | YSC1453104690                             |
 | from          | string    | 开始日期          | 是    | 20151017                                  |
 | to            | string    | 截止日期          | 是    | 20151116                                  |
 | page          | number    | 当前页码          | 否    | 1                                         |
@@ -310,39 +313,57 @@ grant_type=client_credentials
     "merchant_trades_detail_response": {
         "page": 1,
         "page_size": 10,
-        "page_count": 1,
+        "items_count": 5,
         "detail": [
             {
-                "_id": "8600001300000200000053",
-                "code": null,
-                "amount": 0.01,
-                "method": "cash",
-                "tid": "8600001300000200000053",
-                "paid_at": "2016-01-19T06:15:35.231Z"
-            },
-            {
-                "_id": "8600001300000200000054",
-                "code": null,
-                "amount": 0.03,
-                "method": "cash",
-                "tid": "8600001300000200000054",
-                "paid_at": "2016-01-19T06:16:06.767Z"
-            },
-            {
-                "_id": "8600001300000200000055",
-                "code": null,
+                "created_at": "2016-01-18T08:50:54.522Z",
+                "code": "YSC1453104690",
                 "amount": 0.01,
                 "method": "weixin",
-                "tid": "8600001300000200000055",
-                "paid_at": "2016-01-19T06:16:33.116Z"
+                "tid": "8600001300000100000048",
+                "paid_at": "2016-01-18T08:52:48.980Z",
+                "device_id": "3826ef14abfa52ca",
+                "method_alias": "微信"
             },
             {
-                "_id": "8600001300000200000056",
-                "code": null,
-                "amount": 0.02,
-                "method": "alipay",
-                "tid": "8600001300000200000056",
-                "paid_at": "2016-01-19T06:17:23.037Z"
+                "created_at": "2016-01-19T05:58:05.071Z",
+                "code": "YSC1453183009",
+                "amount": 0.01,
+                "method": "cash",
+                "tid": "8600001300000100000049",
+                "paid_at": "2016-01-19T05:58:08.165Z",
+                "device_id": "3826ef14abfa52ca",
+                "method_alias": "现金"
+            },
+            {
+                "created_at": "2016-01-19T05:59:07.487Z",
+                "code": "YSC1453183009",
+                "amount": 0.01,
+                "method": "cash",
+                "tid": "8600001300000100000050",
+                "paid_at": "2016-01-19T05:59:19.462Z",
+                "device_id": "3826ef14abfa52ca",
+                "method_alias": "现金"
+            },
+            {
+                "created_at": "2016-01-19T06:00:22.180Z",
+                "code": "YSC1453183009",
+                "amount": 0.01,
+                "method": "cash",
+                "tid": "8600001300000100000051",
+                "paid_at": "2016-01-19T06:00:24.180Z",
+                "device_id": "3826ef14abfa52ca",
+                "method_alias": "现金"
+            },
+            {
+                "created_at": "2016-01-19T06:00:46.943Z",
+                "code": "YSC1453183009",
+                "amount": 0.01,
+                "method": "weixin",
+                "tid": "8600001300000100000052",
+                "paid_at": "2016-01-19T06:01:30.842Z",
+                "device_id": "3826ef14abfa52ca",
+                "method_alias": "微信"
             }
         ]
     }
