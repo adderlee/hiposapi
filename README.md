@@ -377,7 +377,7 @@ grant_type=client_credentials
 
 ### [回调]设备授权回调
 > POST 方式
-示例数据：device_id=3826ef14abfa52ca&store_name=大剧院店
+示例数据：device_id=3826ef14abfa52ca&store_name=大剧院店&new=true
 
 ### 获取订单详情
 > GET 方式
