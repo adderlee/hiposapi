@@ -181,6 +181,7 @@ grant_type=client_credentials
 | 参数          | 类型      | 说明              | 必填  | 示例                                      |
 | :------------ | :-------- | :---------------- | :---- | :---------------------------------------- |
 | ali_app_id    | string    | 支付宝AppId       | 是    | 2015101700468946                          |
+| ali_pri_key   | string    | 支付宝私钥        | 是    | MIILOAIBAzCCCwIGCSqGSIb3DQEHAaCCCvME......|
 | wx_app_id     | string    | 公众号AppId       | 是    | wx7afb8b71daee6a13                        |
 | wx_mch_id     | string    | 微信支付商户号    | 是    | 1277664401                                |
 | wx_pay_secret | string    | 微信支付API密钥   | 是    | fd70927a9800def8c49XXXXXXXXXXXXX          |
