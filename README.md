@@ -412,6 +412,7 @@ grant_type=client_credentials
 | :------------ | :-------- | :---------------- | :---- | :---------------------------------------- |
 | code          | string    | 提货单号          | 是    | YSC20110118                               |
 | device_id     | string    | 设备编号          | 是    | 3826ef14abfa52ca                          |
+| method        | string    | 线下支付方式      | 是    | cash / weixin / alipay                    |
 
 返回结果：
 >
