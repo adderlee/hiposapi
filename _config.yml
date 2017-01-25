@@ -1,0 +1,8 @@
+title: HiPOS Open API
+description: HiPOS 应用程序接口
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-leap-day
+
+gems:
+  - jekyll-mentions
